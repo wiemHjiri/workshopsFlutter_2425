@@ -1,4 +1,4 @@
-import 'package:box_office_sim2/film.dart';
+import 'package:box_office_sim2/entities/film.dart';
 import 'package:flutter/material.dart';
 
 class FilmCard extends StatelessWidget {

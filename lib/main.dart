@@ -1,4 +1,8 @@
+import 'package:box_office_sim2/entities/film.dart';
+import 'package:box_office_sim2/film_details.dart';
+import 'package:box_office_sim2/films_gridview.dart';
 import 'package:box_office_sim2/home.dart';
+import 'package:box_office_sim2/signup.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -32,7 +36,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Home()
+    //  home: FilmDetails(film: Film(title: "House Of Dead", image: "HouseOfDead.jpg",description: "The House of the Dead est un jeu vidéo de tir au pistolet sorti sur borne d'arcade en 1996. Il est ensuite paru sur Saturn et PC en 1998. Le joueur, armé d'un pistolet, doit se frayer un chemin à travers une horde de zombies.",price: 100))
+        home: const Signup()
     );
   }
 }

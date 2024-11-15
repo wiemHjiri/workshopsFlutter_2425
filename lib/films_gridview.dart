@@ -1,14 +1,17 @@
 import 'package:box_office_sim2/entities/film.dart';
-import 'package:box_office_sim2/items/film_card.dart';
+import 'package:box_office_sim2/items/item_gridview.dart';
 import 'package:flutter/material.dart';
-class Home extends StatefulWidget {
-  const Home({super.key});
+
+
+
+class FilmsGridview extends StatefulWidget {
+  const FilmsGridview({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<FilmsGridview> createState() => _FilmsGridviewState();
 }
 
-class _HomeState extends State<Home> {
+class _FilmsGridviewState extends State<FilmsGridview> {
 
   List<Film> films=[];
 
@@ -19,23 +22,22 @@ class _HomeState extends State<Home> {
     films.add(Film(title: "House Of Dead",image: "HouseOfDead.jpg",description: "The House of the Dead est un jeu vidéo de tir au pistolet sorti sur borne d'arcade en 1996. Il est ensuite paru sur Saturn et PC en 1998. Le joueur, armé d'un pistolet, doit se frayer un chemin à travers une horde de zombies.", price: 100));
     films.add(Film(title: "The Grudge", image: "thegrudge.jpg",description: "The House of the Dead est un jeu vidéo de tir au pistolet sorti sur borne d'arcade en 1996. Il est ensuite paru sur Saturn et PC en 1998. Le joueur, armé d'un pistolet, doit se frayer un chemin à travers une horde de zombies.", price: 100));
     films.add(Film(title: "The Abyss", image: "theabyss.jpg",description: "The House of the Dead est un jeu vidéo de tir au pistolet sorti sur borne d'arcade en 1996. Il est ensuite paru sur Saturn et PC en 1998. Le joueur, armé d'un pistolet, doit se frayer un chemin à travers une horde de zombies.", price: 100));
-    films.add(Film(title: "Ice Road", image: "iceroad.jpg",description: "The House of the Dead est un jeu vidéo de tir au pistolet sorti sur borne d'arcade en 1996. Il est ensuite paru sur Saturn et PC en 1998. Le joueur, armé d'un pistolet, doit se frayer un chemin à travers une horde de zombies.", price: 100));
    
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Box Office'),
-       
-      ),
-      body: ListView.builder(
-        itemCount: films.length,
-        itemBuilder: (context,index){
-            return FilmCard(
-              film: Film(title: films[index].title, image: films[index].image),
-            );
-        }),      
+        body: GridView.builder(
+          itemCount: films.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 12,
+            mainAxisSpacing: 12,
+            mainAxisExtent: 155
+            ), 
+          itemBuilder: (context,index){
+            return ItemGridview(film: films[index]);
+          })
     );
   }
 }
