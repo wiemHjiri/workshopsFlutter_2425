@@ -4,9 +4,9 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class FilmDetails extends StatefulWidget {
 
-  Film film;
+  
 
-  FilmDetails({super.key,required this.film});
+  FilmDetails({super.key});
 
   @override
   State<FilmDetails> createState() => _FilmDetailsState();
@@ -14,22 +14,31 @@ class FilmDetails extends StatefulWidget {
 
 class _FilmDetailsState extends State<FilmDetails> {
   double rate=0;
+late Film film;
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+     final args = ModalRoute.of(context)?.settings.arguments as Film;
+    film = args; // Sauvegarder l'objet Film pour l'utiliser dans le widget
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text(widget.film.title, style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold))),
+        title: Center(child: Text(film.title, style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold))),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            Image.asset("assets/${widget.film.image}"),
+            Image.asset("assets/${film.image}"),
             const SizedBox(height: 20),
-            Text(widget.film.description!,style: const TextStyle(fontSize: 16)),
+            Text(film.description!,style: const TextStyle(fontSize: 16)),
             const SizedBox(height: 20),
-            Text("${widget.film.price} TND", style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 40)),
+            Text("${film.price} TND", style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 40)),
             const SizedBox(height: 50),
             Text("$rate"),
             RatingBar.builder(

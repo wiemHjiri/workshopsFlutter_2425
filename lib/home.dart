@@ -24,18 +24,13 @@ class _HomeState extends State<Home> {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Box Office'),
-       
-      ),
-      body: ListView.builder(
+    return  ListView.builder(
         itemCount: films.length,
         itemBuilder: (context,index){
             return FilmCard(
-              film: Film(title: films[index].title, image: films[index].image),
+              film: Film(title: films[index].title, image: films[index].image, 
+              description: films[index].description, price: films[index].price),
             );
-        }),      
-    );
+        });      
   }
 }

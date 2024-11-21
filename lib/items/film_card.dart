@@ -9,27 +9,33 @@ class FilmCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 6,
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: 
-           Column(
-            children: [
-              Image.asset("assets/${film.image}", width: double.infinity,height: 200,),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(film.title),
-                    const Icon(Icons.star, color: Colors.amber, size: 30)
-                  ],
-                ),
-              )
-            ],
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, "/details", arguments: Film(title: film.title, image: film.image
+        ,description: film.description,price: film.price));
+      },
+      child: Card(
+        elevation: 6,
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: 
+             Column(
+              children: [
+                Image.asset("assets/${film.image}", width: double.infinity,height: 200,),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(film.title),
+                      const Icon(Icons.star, color: Colors.amber, size: 30)
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
+      ),
     );
   }
 }

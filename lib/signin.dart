@@ -1,21 +1,22 @@
+import 'package:box_office_sim2/signup.dart';
 import 'package:flutter/material.dart';
 
 
-class Signup extends StatefulWidget {
-  const Signup({super.key});
+class Signin extends StatefulWidget {
+  const Signin({super.key});
 
   @override
-  State<Signup> createState() => _SignupState();
+  State<Signin> createState() => _SigninState();
 }
 
-class _SignupState extends State<Signup> {
-  late String username,password,email;
+class _SigninState extends State<Signin> {
+  late String username,password;
   GlobalKey<FormState> _globalKey=GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Sign Up"),
+        title: const Text("Sign In"),
       ),
       body: Form(
         key: _globalKey,
@@ -39,23 +40,7 @@ class _SignupState extends State<Signup> {
                 border: OutlineInputBorder(),labelText: "Username"),
              ),
              const SizedBox(height: 20),
-              TextFormField(
-                onSaved: (value){
-                  email = value!;
-                },
-                validator: (value){
-                   RegExp regex = RegExp(
-                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-                  if(value!.isEmpty  || !regex.hasMatch(value)) {
-                    return "email invalide";
-                  }
-                },
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),labelText: "Email"),
-             ),
-             const SizedBox(height: 20),
              TextFormField(
-             
                 onSaved: (value){
                   password = value!;
                 },
@@ -69,12 +54,18 @@ class _SignupState extends State<Signup> {
                 border: OutlineInputBorder(),labelText: "Password"),
              ),
              const SizedBox(height: 20),
-             const Row(
+            Row(
               children: [
-                SizedBox(width: 150,),
-                Padding(
-                  padding:  EdgeInsets.only(right: 10),
-                  child: Text("Already have an account ?"),
+                const SizedBox(width: 150,),
+                GestureDetector(
+                  onTap: (){
+                  //  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Signup()));
+                 Navigator.pushReplacementNamed(context, "/signup");
+                  },
+                  child: const Padding(
+                    padding:  EdgeInsets.only(right: 10),
+                    child: Text("Already have an account ?"),
+                  ),
                 ),
                 Icon(Icons.arrow_forward_ios_rounded,color: Colors.deepOrange,)
               ],
@@ -84,20 +75,14 @@ class _SignupState extends State<Signup> {
               onPressed: (){
                 if(_globalKey.currentState!.validate()){
                   _globalKey.currentState!.save();
-                  showDialog(context: context, builder: (context){
-                    return AlertDialog(
-                      title: const Text("Informations"),
-                      content: Text("Welcome $username"),
-                    
-                    );
-                  });
+                  Navigator.pushReplacementNamed(context, "/home");
                 }
               }, 
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.deepOrange,
                 foregroundColor: Colors.white
               ),
-              child: const Text("Sign Up")
+              child: const Text("S'authentifier")
               )
           
             ],

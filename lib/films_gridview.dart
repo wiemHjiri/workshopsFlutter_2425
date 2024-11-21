@@ -26,8 +26,7 @@ class _FilmsGridviewState extends State<FilmsGridview> {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: GridView.builder(
+    return GridView.builder(
           itemCount: films.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -37,7 +36,7 @@ class _FilmsGridviewState extends State<FilmsGridview> {
             ), 
           itemBuilder: (context,index){
             return ItemGridview(film: films[index]);
-          })
+          }
     );
   }
 }
